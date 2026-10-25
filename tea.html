@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tea Date?</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7ebe1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(139, 94, 60, 0.15);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            border: 2px solid #e6ccb2;
+        }
+
+        .icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            color: #7f5539;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #9c6644;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            height: 50px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        #yesBtn {
+            background-color: #ddb892;
+            color: #7f5539;
+        }
+
+        #yesBtn:hover {
+            background-color: #b7b7a4;
+            transform: scale(1.05);
+        }
+
+        #noBtn {
+            background-color: #ef233c;
+            color: white;
+            position: absolute;
+            left: 55%;
+        }
+
+        .success-message {
+            display: none;
+            color: #6b705c;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="inviteCard">
+        <div class="icon">🍵</div>
+        <h1>Fancy a tea date?</h1>
+        <p>Just you, me, some warm tea, and great conversation. What do you say?</p>
+        
+        <div class="btn-container">
+            <button id="yesBtn" onclick="acceptDate()">Yes!</button>
+            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No</button>
+        </div>
+
+        <div class="success-message" id="successMsg">
+            Yay! 🎉 It's a date. I'll pick the spot! ☕
+        </div>
+    </div>
+
+    <script>
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            
+            // Generate random positions within the visible window bounds
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 40);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 40);
+            
+            // Switch to fixed positioning once hovered so it can move anywhere on screen
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        function acceptDate() {
+            // Hide the buttons and show the success message
+            document.querySelector('.btn-container').style.display = 'none';
+            document.getElementById('successMsg').style.display = 'block';
+            
+            // Optional: You can add an API call or form submission here to notify yourself!
+        }
+    </script>
+
+</body>
+</html>
